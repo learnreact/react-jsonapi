@@ -1,126 +1,51 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
 
-var createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
     }
   }
 
-  return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-}();
-
-
-
-
-
-
-
-
-
-var inherits = function (subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+  return target;
 };
 
-
-
-
-
-
-
-
-
-
-
-var possibleConstructorReturn = function (self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return call && (typeof call === "object" || typeof call === "function") ? call : self;
-};
-
-var Formatter = function Formatter(_ref) {
-  var obj = _ref.obj;
-  return React.createElement(
+var Idx = function Idx(_ref, _ref2) {
+  var idx = _ref.idx,
+      children = _ref.children;
+  var json = _ref2.json;
+  return children ? typeof children === "function" ? React.Children.only(children(json[idx])) : React.Children.only(children) : React.createElement(
     "pre",
     null,
-    JSON.stringify(obj, null, 2)
+    React.createElement(
+      "code",
+      null,
+      JSON.stringify(json[idx], null, 2)
+    )
   );
 };
 
-var withResponse = function withResponse(Composed) {
-  var FetchContextProvider = function (_Component) {
-    inherits(FetchContextProvider, _Component);
-
-    function FetchContextProvider() {
-      classCallCheck(this, FetchContextProvider);
-      return possibleConstructorReturn(this, (FetchContextProvider.__proto__ || Object.getPrototypeOf(FetchContextProvider)).apply(this, arguments));
-    }
-
-    createClass(FetchContextProvider, [{
-      key: "render",
-      value: function render() {
-        return React.createElement(Composed, this.context);
-      }
-    }]);
-    return FetchContextProvider;
-  }(Component);
-
-  FetchContextProvider.contextTypes = {
-    response: PropTypes.object
-  };
-
-  return FetchContextProvider;
+Idx.contextTypes = {
+  state: PropTypes.object,
+  json: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };
 
-var Response = withResponse(function (_ref2) {
-  var response = _ref2.response;
-  return React.createElement(Formatter, { obj: response });
-});
-
-// TODO: JSONAPI
-// const Idx = ({ idx }) =>
-//   createElement(
-//     withResponse(({ response }) => <Formatter obj={response[idx]} />)
-//   );
-// const Links = () => <Idx idx="links" />;
-// const Data = () => <Idx idx="data" />;
-// const Included = () => <Idx idx="included" />;
-// const Meta = () => <Idx idx="meta" />;
-
-var index = {
-  Fetch: Fetch,
-  Formatter: Formatter,
-  // Idx,
-  Response: Response,
-  withResponse: withResponse
+var Data = function Data(props) {
+  return React.createElement(Idx, _extends({ idx: "data" }, props));
+};
+var Included = function Included(props) {
+  return React.createElement(Idx, _extends({ idx: "included" }, props));
+};
+var Links = function Links(props) {
+  return React.createElement(Idx, _extends({ idx: "links" }, props));
+};
+var Meta = function Meta(props) {
+  return React.createElement(Idx, _extends({ idx: "meta" }, props));
 };
 
-export default index;
+export { Idx, Data, Included, Links, Meta };

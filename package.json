@@ -1,6 +1,6 @@
 {
   "name": "react-jsonapi",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Components for working with JSONAPI formatted JSON",
   "main": "dist/react-jsonapi.cjs.js",
   "module": "dist/react-jsonapi.esm.js",
@@ -21,10 +21,7 @@
   "bugs": {
     "url": "https://github.com/learnreact/react-jsonapi/issues"
   },
-  "files": [
-    "dist",
-    "index.js"
-  ],
+  "files": ["dist", "index.js"],
   "dependencies": {
     "prop-types": "^15.5.10",
     "react": "^15.6.1"

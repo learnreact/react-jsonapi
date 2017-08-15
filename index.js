@@ -1,40 +1,22 @@
 import React from "react"
 
-const Formatter = ({ obj }) =>
-  <pre>
-    {JSON.stringify(obj, null, 2)}
-  </pre>
+export const Idx = ({ idx, children }, { json }) =>
+  children
+    ? typeof children === "function"
+      ? React.Children.only(children(json[idx]))
+      : React.Children.only(children)
+    : <pre>
+        <code>
+          {JSON.stringify(json[idx], null, 2)}
+        </code>
+      </pre>
 
-const withResponse = Composed => {
-  class FetchContextProvider extends Component {
-    render() {
-      return <Composed {...this.context} />
-    }
-  }
-
-  FetchContextProvider.contextTypes = {
-    response: PropTypes.object,
-  }
-
-  return FetchContextProvider
+Idx.contextTypes = {
+  state: PropTypes.object,
+  json: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 }
 
-const Response = withResponse(({ response }) => <Formatter obj={response} />)
-
-// TODO: JSONAPI
-// const Idx = ({ idx }) =>
-//   createElement(
-//     withResponse(({ response }) => <Formatter obj={response[idx]} />)
-//   );
-// const Links = () => <Idx idx="links" />;
-// const Data = () => <Idx idx="data" />;
-// const Included = () => <Idx idx="included" />;
-// const Meta = () => <Idx idx="meta" />;
-
-export default {
-  Fetch,
-  Formatter,
-  // Idx,
-  Response,
-  withResponse,
-}
+export const Data = props => <Idx idx="data" {...props} />
+export const Included = props => <Idx idx="included" {...props} />
+export const Links = props => <Idx idx="links" {...props} />
+export const Meta = props => <Idx idx="meta" {...props} />

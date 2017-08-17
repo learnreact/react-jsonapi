@@ -29,7 +29,7 @@ var Idx = function Idx(_ref, _ref2) {
     React.createElement(
       "code",
       null,
-      JSON.stringify(lens(json, idx), null, 2)
+      window.JSON.stringify(lens(json, idx), null, 2)
     )
   );
 };

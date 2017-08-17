@@ -10,7 +10,7 @@ export const Idx = ({ idx, children }, { json }) =>
       : React.Children.only(children)
     : <pre>
         <code>
-          {JSON.stringify(lens(json, idx), null, 2)}
+          {window.JSON.stringify(lens(json, idx), null, 2)}
         </code>
       </pre>
 

@@ -1,6 +1,6 @@
 {
   "name": "react-jsonapi",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Components for working with JSONAPI formatted JSON",
   "main": "dist/react-jsonapi.cjs.js",
   "module": "dist/react-jsonapi.esm.js",

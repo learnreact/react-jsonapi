@@ -16,7 +16,7 @@ var _extends = Object.assign || function (target) {
 };
 
 var lens = function lens(subject, _lens) {
-  return _lens ? subject(_lens) : subject;
+  return _lens ? subject[_lens] : subject;
 };
 
 var Idx = function Idx(_ref, _ref2) {

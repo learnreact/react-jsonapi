@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-const lens = (subject, lens) => (lens ? subject(lens) : subject)
+const lens = (subject, lens) => (lens ? subject[lens] : subject)
 
 export const Idx = ({ idx, children }, { json }) =>
   children

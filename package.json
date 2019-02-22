@@ -2,16 +2,17 @@
   "name": "react-jsonapi",
   "version": "0.0.5",
   "description": "Components for working with JSONAPI formatted JSON",
-  "main": "dist/react-jsonapi.cjs.js",
-  "module": "dist/react-jsonapi.esm.js",
-  "browser": "dist/react-jsonapi.umd.js",
+  "main": "dist/react-jsonapi.js",
+  "umd:main": "dist/react-jsonapi.umd.js",
+  "module": "dist/react-jsonapi.mjs",
+  "source": "index.js",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "build": "microbundle ",
+    "dev": "microbundle watch",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pretest": "npm run build"
+    "prepublish": "npm run build"
   },
-  "author": "Michael Chan (@chantastic)",
+  "author": "Michael Chan <mijoch@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/learnreact/react-jsonapi",
   "repository": {
@@ -21,20 +22,15 @@
   "bugs": {
     "url": "https://github.com/learnreact/react-jsonapi/issues"
   },
-  "files": ["dist", "index.js"],
-  "dependencies": {
-    "prop-types": "^15.5.10",
-    "react": "^15.6.1"
+  "files": [
+    "dist",
+    "index.js"
+  ],
+  "peerDependencies": {
+    "prop-types": "^16.0.0",
+    "react": "^16.0.0"
   },
   "devDependencies": {
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-react": "^6.24.1",
-    "rollup": "^0.43.0",
-    "rollup-plugin-babel": "^2.7.1",
-    "rollup-plugin-commonjs": "^8.0.2",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-watch": "^4.0.0"
+    "microbundle": "^0.10.0"
   }
 }

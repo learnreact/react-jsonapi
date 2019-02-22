@@ -1,6 +1,6 @@
 {
   "name": "react-jsonapi",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Components for working with JSONAPI formatted JSON",
   "main": "dist/react-jsonapi.js",
   "umd:main": "dist/react-jsonapi.umd.js",
